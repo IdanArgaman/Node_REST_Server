@@ -71,6 +71,15 @@ export const getFromattedContacts = async (req, res) => {
 export const getContact = async (req, res, next) => {
     const contactId = req.params.id;
 
+    // FROM - https://medium.com/@SigniorGratiano/express-error-handling-674bfdd86139
+    // If we pass in an argument to next(), the function will assume that argument 
+    // is an error and thus proceed directly to the error handling middleware.
+
+    // FROM Express official: https://expressjs.com/en/guide/error-handling.html
+    // If you pass anything to the next() function (except the string 'route'), Express regards 
+    // the current request as being an error and will skip any remaining non-error handling 
+    // routing and middleware functions.
+
     // The request is bad - malformed
     contactId || next(errorHandler("Please enter a contact ID", 400));
 
