@@ -1,10 +1,10 @@
 const faker = require("faker");
 const fs = require("fs");
 
-const generatePersonsData = (number) => {
-    const persons = [];
+const generateData = (number) => {
+    const data = [];
     while (number >= 0) {
-        persons.push({
+        data.push({
             id: number,
             name: faker.name.firstName(),
             description: faker.lorem.paragraphs(2),
@@ -14,12 +14,12 @@ const generatePersonsData = (number) => {
         });
         number--;
     }
-    return persons;
+    return data;
 };
 
 export const mkDB = (number) => {
     fs.writeFileSync(
         "./db.json",
-        JSON.stringify({ users: generatePersonsData(number) })
+        JSON.stringify({ users: generateData(number) })
     );
 };
